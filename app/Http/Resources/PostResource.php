@@ -19,7 +19,9 @@ class PostResource extends JsonResource
             'title' => $this->title,
             'slug' => $this->slug,
             'content' => $this->content,
-            'thumbnail' => $this->thumbnail
+            'thumbnail' => $this->getImage()->path,
+            'caption' => $this->getImage()->caption,
+            'alt_text' => $this->getImage()->description
         ];
     }
 }

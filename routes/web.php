@@ -1,15 +1,10 @@
 <?php
 
+use App\Http\Controllers\CategoryShowController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\PostShowController;
 use Illuminate\Support\Facades\Route;
-use Inertia\Inertia;
 
-Route::get('/', HomeController::class);
-Route::get('article/{post:slug}', PostShowController::class)->name('post.show');
-
-Route::middleware(['auth:sanctum', config('jetstream.auth_session'), 'verified'])->group(function () {
-    Route::get('/dashboard', function () {
-        return Inertia::render('Dashboard');
-    })->name('dashboard');
-});
+Route::get('/', HomeController::class)->name('home');
+Route::get('articles/{post:slug}', PostShowController::class)->name('post.show');
+Route::get('categories/{category:slug}', CategoryShowController::class)->name('category.show');

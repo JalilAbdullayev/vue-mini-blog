@@ -14,7 +14,7 @@ class PostShowController extends Controller
     public function __invoke(Request $request, Post $post)
     {
         return inertia()->render('PostShow', [
-            'post' => PostResource::make($post)
+            'post' => PostResource::make($post->load('categories'))
         ]);
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -21,7 +22,9 @@ class PostResource extends JsonResource
             'content' => $this->content,
             'thumbnail' => $this->getImage()->path,
             'caption' => $this->getImage()->caption,
-            'alt_text' => $this->getImage()->description
+            'alt_text' => $this->getImage()->description,
+            'excerpt' => Str::words(strip_tags($this->content), 30),
+            'categories' => CategoryResource::collection($this->whenLoaded('categories'))
         ];
     }
 }
